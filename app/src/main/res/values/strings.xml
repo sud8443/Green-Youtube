@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Green Youtube</string>
+    <string name="view_details">10 M views \u2022 6 month ago</string>
+    <string name="trending_view_details">1 M views</string>
+</resources>
