@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder> {
 
     Context mContext;
+    OnItemClickListener mItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mItemClickListener = listener;
+    }
 
     public CustomRecyclerViewAdapter(Context context){
         mContext = context;
@@ -25,8 +30,13 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mItemClickListener.onItemClicked(position);
+            }
+        });
     }
 
     @Override
@@ -38,5 +48,9 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
         public ViewHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClicked(int position);
     }
 }

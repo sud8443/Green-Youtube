@@ -1,5 +1,6 @@
 package developersudhanshu.com.greenyoutube.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import developersudhanshu.com.greenyoutube.CustomRecyclerViewAdapter;
+import developersudhanshu.com.greenyoutube.HomeActivityDisplay;
 import developersudhanshu.com.greenyoutube.R;
 
 /**
@@ -33,6 +35,13 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_frag_home);
         adapter = new CustomRecyclerViewAdapter(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        adapter.setOnItemClickListener(new CustomRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent i = new Intent(getContext(), HomeActivityDisplay.class);
+                startActivity(i);
+            }
+        });
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         return v;
